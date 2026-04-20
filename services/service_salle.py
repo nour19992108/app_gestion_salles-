@@ -3,3 +3,13 @@ from data.dao_salle import DataSalle
 class ServiceSalle:
     def _init_(self):
         self.dao = DataSalle()
+
+def ajouter_salle(self, salle):
+    if not salle.code or not salle.description or not salle.categorie or not salle.capacite:
+        return False, "❌ Données manquantes"
+
+    if salle.capacite < 1:
+        return False, "❌ Capacité invalide"
+
+    self.dao.insert_salle(salle)
+    return True, "✅ Salle ajoutée"
