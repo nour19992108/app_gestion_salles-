@@ -1,8 +1,11 @@
 from data.dao_salle import DataSalle
 
 class ServiceSalle:
-    def _init_(self):
+    def __init__(self):
         self.dao = DataSalle()
+
+    def get_salles(self):
+        return self.dao.get_salles()
 
 def ajouter_salle(self, salle):
     if not salle.code or not salle.description or not salle.categorie or not salle.capacite:
