@@ -1,28 +1,54 @@
-class ViewSalle:
-    def afficher_menu(self):
-        print("\n--- Gestion des salles ---")
-        print("1. Ajouter une salle")
-        print("2. Afficher les salles")
-        print("3. Modifier une salle")
-        print("4. Supprimer une salle")
-        print("5. Quitter")
+import customtkinter as ctk
+from services.service_salle import ServiceSalle
 
-    def saisir_salle(self):
-        code = input("Code : ")
-        description = input("Description : ")
-        categorie = input("Catégorie : ")
-        capacite = int(input("Capacité : "))
-        return code, description, categorie, capacite
+class ViewSalle(ctk.CTk):
+    def _init_(self):
+        super()._init_()
 
-    def saisir_code(self):
-        return input("Code de la salle : ")
+        self.title("Gestion des salles")
+        self.geometry("900x600")
 
-    def afficher_message(self, message):
-        print(message)
+        self.service_salle = ServiceSalle()
+import customtkinter as ctk
+from services.service_salle import ServiceSalle
 
-    def afficher_salles(self, salles):
-        if not salles:
-            print("Aucune salle trouvée")
-        else:
-            for s in salles:
-                print(f"{s.code} - {s.description} - {s.categorie} - {s.capacite}")
+class ViewSalle(ctk.CTk):
+    def _init_(self):
+        super()._init_()
+
+        self.title("Gestion des salles")
+        self.geometry("900x600")
+
+        self.service_salle = ServiceSalle()
+
+        # Cadre Informations Salle
+        self.frame_info = ctk.CTkFrame(self)
+        self.frame_info.pack(pady=10, padx=10, fill="x")
+
+        # Code
+        self.label_code = ctk.CTkLabel(self.frame_info, text="Code")
+        self.label_code.grid(row=0, column=0, padx=5, pady=5)
+
+        self.entry_code = ctk.CTkEntry(self.frame_info)
+        self.entry_code.grid(row=0, column=1, padx=5, pady=5)
+
+        # Description
+        self.label_description = ctk.CTkLabel(self.frame_info, text="Description")
+        self.label_description.grid(row=1, column=0, padx=5, pady=5)
+
+        self.entry_description = ctk.CTkEntry(self.frame_info)
+        self.entry_description.grid(row=1, column=1, padx=5, pady=5)
+
+        # Catégorie
+        self.label_categorie = ctk.CTkLabel(self.frame_info, text="Catégorie")
+        self.label_categorie.grid(row=2, column=0, padx=5, pady=5)
+
+        self.entry_categorie = ctk.CTkEntry(self.frame_info)
+        self.entry_categorie.grid(row=2, column=1, padx=5, pady=5)
+
+        # Capacité
+        self.label_capacite = ctk.CTkLabel(self.frame_info, text="Capacité")
+        self.label_capacite.grid(row=3, column=0, padx=5, pady=5)
+
+        self.entry_capacite = ctk.CTkEntry(self.frame_info)
+        self.entry_capacite.grid(row=3, column=1, padx=5, pady=5)

@@ -26,3 +26,4 @@ def modifier_salle(self, salle):
 def supprimer_salle(self, code):
     self.dao.delete_salle(code)
     return True, "🗑️ Salle supprimée"
+
