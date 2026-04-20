@@ -13,8 +13,8 @@ import customtkinter as ctk
 from services.service_salle import ServiceSalle
 
 class ViewSalle(ctk.CTk):
-    def _init_(self):
-        super()._init_()
+    def __init__(self):
+        super().__init__()
 
         self.title("Gestion des salles")
         self.geometry("900x600")
@@ -57,7 +57,11 @@ class ViewSalle(ctk.CTk):
         self.frame_actions = ctk.CTkFrame(self)
         self.frame_actions.pack(pady=10, padx=10, fill="x")
 
-        self.btn_ajouter = ctk.CTkButton(self.frame_actions, text="Ajouter")
+        self.btn_ajouter = ctk.CTkButton(
+            self.frame_actions,
+            text="Ajouter",
+            command=self.ajouter_salle
+        )
         self.btn_ajouter.grid(row=0, column=0, padx=10, pady=10)
 
         self.btn_modifier = ctk.CTkButton(self.frame_actions, text="Modifier")
@@ -68,3 +72,12 @@ class ViewSalle(ctk.CTk):
 
         self.btn_rechercher = ctk.CTkButton(self.frame_actions, text="Rechercher")
         self.btn_rechercher.grid(row=0, column=3, padx=10, pady=10)
+        self.frame_info = ctk.CTkFrame(self)
+        self.frame_info.pack(pady=10, padx=10, fill="x")
+        self.label_test = ctk.CTkLabel(self.frame_info, text="Test salle")
+
+        self.label_test.pack()
+    def ajouter_salle(self):
+        print("Bouton ajouter cliqué")
+
+
