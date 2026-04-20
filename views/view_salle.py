@@ -1,6 +1,8 @@
 import customtkinter as ctk
 from services.service_salle import ServiceSalle
 from tkinter import ttk
+
+
 class ViewSalle(ctk.CTk):
     def __init__(self):
         super().__init__()
@@ -61,9 +63,6 @@ class ViewSalle(ctk.CTk):
 
         self.btn_rechercher = ctk.CTkButton(self.frame_actions, text="Rechercher")
         self.btn_rechercher.grid(row=0, column=3, padx=10, pady=10)
-        self.frame_info = ctk.CTkFrame(self)
-        self.frame_info.pack(pady=10, padx=10, fill="x")
-
 
 
         # Cadre Liste des salles
@@ -90,12 +89,32 @@ class ViewSalle(ctk.CTk):
 
         self.treeList.pack(expand=True, fill="both", padx=10, pady=10)
         self.lister_salles()
+
     def ajouter_salle(self):
-        print("Bouton ajouter cliqué")
+        code = self.entry_code.get()
+        description = self.entry_description.get()
+        categorie = self.entry_categorie.get()
+        capacite = int(self.entry_capacite.get())
+
+        from models.salle import Salle
+        salle = Salle(code, description, categorie, capacite)
+
+        print("avant service")
+        try:
+            resultat = self.service_salle.ajouter_salle(salle)
+            print("resultat =", resultat)
+
+            success, message = resultat
+            print(message)
+
+            if success:
+                self.lister_salles()
+
+        except Exception as e:
+            print("ERREUR AJOUT =", e)
 
     def lister_salles(self):
         self.treeList.delete(*self.treeList.get_children())
         liste = self.service_salle.get_salles()
         for s in liste:
             self.treeList.insert("", "end", values=(s.code, s.description, s.categorie, s.capacite))
-

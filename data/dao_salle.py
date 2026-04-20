@@ -23,8 +23,8 @@ class DataSalle:
 
         requete = """
         INSERT INTO salle (code, description, categorie, capacite)
-        VALUES (%s, %s, %s, %s)
-        """
+        VALUES (%s, %s, %s, %s)"""
+
         valeurs = (salle.code, salle.description, salle.categorie, salle.capacite)
 
         cursor.execute(requete, valeurs)
