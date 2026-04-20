@@ -38,5 +38,4 @@ def main():
         else:
             print("Choix invalide")
 
-if __name__ == "_main_":
-    main()
+main()
