@@ -60,3 +60,22 @@ class DataSalle:
 
         cursor.close()
         connection.close()
+
+    def get_salles(self):
+        connection = self.get_connection()
+        cursor = connection.cursor()
+
+        requete = "SELECT code, description, categorie, capacite FROM salle"
+        cursor.execute(requete)
+
+        resultats = cursor.fetchall()
+
+        salles = []
+        for r in resultats:
+            salle = Salle(r[0], r[1], r[2], r[3])
+            salles.append(salle)
+
+        cursor.close()
+        connection.close()
+
+        return salles
